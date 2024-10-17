@@ -17,4 +17,29 @@ public class BordServiceImpl implements BoardService{
     public List<BoardDTO> getList() {
         return boardMapper.selectAll();
     }
+
+    @Override
+    public BoardDTO getOne(int bno) {
+        boardMapper.visitCountUpdate(bno);
+        return boardMapper.selectOne(bno);
+    }
+
+    @Override
+    public void register(BoardDTO boardDTO) {
+        boardMapper.insert(boardDTO);
+    }
+
+    @Override
+    public void modify(BoardDTO boardDTO) {
+        BoardDTO dto=boardMapper.selectOne(boardDTO.getBno());
+        //dto.setVisitcount(boardDTO.getVisitcount());
+        //dto.setPostdate(boardDTO.getPostdate());
+        boardMapper.update(boardDTO);
+
+    }
+
+    @Override
+    public void remove(int bno) {
+        boardMapper.delete(bno);
+    }
 }
