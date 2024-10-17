@@ -32,8 +32,6 @@ public class BordServiceImpl implements BoardService{
     @Override
     public void modify(BoardDTO boardDTO) {
         BoardDTO dto=boardMapper.selectOne(boardDTO.getBno());
-        //dto.setVisitcount(boardDTO.getVisitcount());
-        //dto.setPostdate(boardDTO.getPostdate());
         boardMapper.update(boardDTO);
 
     }
